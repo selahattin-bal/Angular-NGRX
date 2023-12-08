@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="snow layer1 a"></div>
+  <div class="snow layer1"></div>
+  <div class="snow layer2 a"></div>
+  <div class="snow layer2"></div>
+  <div class="snow layer3 a"></div>
+
+  <div class="snow layer3"></div>
+</div>
+<div class="game" *ngIf="!(gameOver$ |async)">
+  <div class="container">
+    <div *ngFor="let item of cards$ |async">
+      <img
+        class="box"
+        [style]="item.active ? active : passive"
+        [src]="item.src"
+        alt=""
+        (click)="onAudioPlay(item)"
+      />
+    </div>
+  </div>
+  <div class="gameFooter">
+    <div class="counter">Count:{{ counter$ | async }} </div>
+    <div class="reset">
+      <button class="resetButton" (click)="reset()">RESET</button>
+    </div>
+
+  </div>
+</div>
+<div class="gameOver" *ngIf="gameOver$ |async">
+  GAME OVER
+  <div class="share">
+    <div>SHARE</div>
+    <button>Whatsapp</button>
+    <button>Twitter</button>
+    <button>Instagram</button>
+  </div>
+  <div class="counter">Count:{{ counter$ | async }} </div>
+  <div class="reset">
+    <button (click)="reset()">RESET</button>
+  </div>
+</div>
